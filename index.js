@@ -3,11 +3,13 @@ import App from './App';
 import HomeScreen from './src/screens/Home';
 import SearchScreen from './src/screens/Search';
 import SettingsScreen from './src/screens/Settings';
+import BookDetails from './src/screens/BookDetails';
 
 // Register All the Components
 Navigation.registerComponent('app.Booksy.HomeScreen', () => HomeScreen);
 Navigation.registerComponent('app.Booksy.SearchScreen', () => SearchScreen);
 Navigation.registerComponent('app.Booksy.SettingsScreen', () => SettingsScreen);
+Navigation.registerComponent('app.Booksy.BookDetails', () => BookDetails);
 
 // Listen for project start event
 Navigation.events().registerAppLaunchedListener(() => {

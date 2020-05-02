@@ -1,7 +1,15 @@
 import React, {useState, useEffect} from 'react';
-import {View, Text, ScrollView, Image, StyleSheet} from 'react-native';
+import {
+  View,
+  Text,
+  ScrollView,
+  Image,
+  StyleSheet,
+  TouchableHighlight,
+} from 'react-native';
 import {useNavigationSearchBarUpdate} from 'react-native-navigation-hooks';
 import {searchBooks, GoogleBook} from '../api/books';
+import {Navigation} from 'react-native-navigation';
 
 const SearchScreen: React.FunctionComponent<{componentId: string}> = ({
   componentId,
@@ -18,39 +26,54 @@ const SearchScreen: React.FunctionComponent<{componentId: string}> = ({
   }, componentId);
 
   useEffect(() => {
-    let timeout;
-    if (timeout) {
-      clearTimeout(timeout);
-      timeout = null;
-    }
     if (query === '') {
       return;
     }
-    timeout = setTimeout(() => {
-      searchBooks(query).then(res => {
-        setResults(res);
-      });
-    }, 2000);
+    searchBooks(query).then(res => {
+      setResults(res);
+    });
   }, [query]);
+
+  const navigateToBookDetails = (book: GoogleBook) =>
+    Navigation.push(componentId, {
+      component: {
+        name: 'app.Booksy.BookDetails',
+        passProps: {
+          book,
+        },
+        options: {
+          topBar: {
+            title: {
+              text: book.volumeInfo.title,
+            },
+          },
+        },
+      },
+    });
 
   return (
     <ScrollView>
       <View style={styles.listContainer}>
         {results.map(book => {
           return (
-            <View key={book.id} style={styles.listItem}>
-              <Image
-                resizeMode="contain"
-                style={{width: 150, height: 200}}
-                source={{
-                  uri: book.volumeInfo.imageLinks.thumbnail.replace(
-                    'http://',
-                    'https://',
-                  ),
-                }}
-              />
-              <Text style={styles.listTitle}>{book.volumeInfo.title}</Text>
-            </View>
+            <TouchableHighlight
+              onPress={() => navigateToBookDetails(book)}
+              key={book.id}
+              style={styles.listItem}>
+              <>
+                <Image
+                  resizeMode="contain"
+                  style={{width: 150, height: 200}}
+                  source={{
+                    uri: book.volumeInfo.imageLinks.thumbnail.replace(
+                      'http://',
+                      'https://',
+                    ),
+                  }}
+                />
+                <Text style={styles.listTitle}>{book.volumeInfo.title}</Text>
+              </>
+            </TouchableHighlight>
           );
         })}
       </View>
