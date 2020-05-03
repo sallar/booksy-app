@@ -1,6 +1,6 @@
 import React from 'react';
 import {Text, View} from 'react-native';
-import {NavigationComponent} from '../types/navigation';
+import {NavigationComponent} from '../navigation';
 
 const HomeScreen: NavigationComponent = () => {
   return (

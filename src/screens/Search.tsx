@@ -1,16 +1,16 @@
-import React, {useState, useEffect} from 'react';
+import React, {useEffect, useState} from 'react';
 import {
-  View,
-  Text,
-  ScrollView,
   Image,
+  ScrollView,
   StyleSheet,
+  Text,
   TouchableHighlight,
+  View,
 } from 'react-native';
 import {useNavigationSearchBarUpdate} from 'react-native-navigation-hooks';
-import {searchBooks, GoogleBook} from '../api/books';
-import {Navigation} from 'react-native-navigation';
-import {NavigationComponent} from '../types/navigation';
+import {GoogleBook, searchBooks} from '../api/books';
+import {navigateTo, NavigationComponent} from '../navigation';
+import Routes from './routes';
 
 const SearchScreen: NavigationComponent = ({componentId}) => {
   const [query, setQuery] = useState<string>('skyward');
@@ -34,13 +34,8 @@ const SearchScreen: NavigationComponent = ({componentId}) => {
   }, [query]);
 
   const navigateToBookDetails = (book: GoogleBook) =>
-    Navigation.push(componentId, {
-      component: {
-        name: 'app.Booksy.BookDetails',
-        passProps: {
-          book,
-        },
-      },
+    navigateTo(componentId, Routes.BookDetails, {
+      book,
     });
 
   return (

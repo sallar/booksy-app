@@ -1,7 +1,7 @@
 import React from 'react';
 import {Text, View, StyleSheet, ScrollView, Image} from 'react-native';
 import {GoogleBook} from '../api/books';
-import {NavigationComponent} from '../types/navigation';
+import {NavigationComponent} from '../navigation';
 
 interface BookDetailsProps {
   book: GoogleBook;
