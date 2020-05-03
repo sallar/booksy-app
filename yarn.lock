@@ -855,6 +855,16 @@
     "@types/yargs" "^15.0.0"
     chalk "^3.0.0"
 
+"@react-hook/debounce@^2.0.3":
+  version "2.0.3"
+  resolved "https://registry.yarnpkg.com/@react-hook/debounce/-/debounce-2.0.3.tgz#46b346580a19b41e9f25faad0a4103d7c7e5e1ba"
+  integrity sha512-G1RStTQ5NJvy0N/Wydn+wdahpEJpdKe/KzTVEkGZ7DTKCixjbOD5TtBJfnkajQzfQUrgLely2JE65W58F2hb1A==
+
+"@react-hook/throttle@^2.1.2":
+  version "2.1.2"
+  resolved "https://registry.yarnpkg.com/@react-hook/throttle/-/throttle-2.1.2.tgz#ff2b342655896dd210246f382e156cdb2ab599cf"
+  integrity sha512-AmZX4wUXHJe/jN33elneFDt5zJN6f4uB9ruTDrBaUcA+Yroh+hjqBlL4/N3IL2sf6oyDRmL2eMQUgJoJN+akIg==
+
 "@react-native-community/cli-debugger-ui@^4.8.0":
   version "4.8.0"
   resolved "https://registry.yarnpkg.com/@react-native-community/cli-debugger-ui/-/cli-debugger-ui-4.8.0.tgz#9a6419b29be69422e0056bbb1874775750351d22"
@@ -2596,6 +2606,13 @@ fb-watchman@^2.0.0:
   dependencies:
     bser "2.1.1"
 
+fbemitter@^2.1.1:
+  version "2.1.1"
+  resolved "https://registry.yarnpkg.com/fbemitter/-/fbemitter-2.1.1.tgz#523e14fdaf5248805bb02f62efc33be703f51865"
+  integrity sha1-Uj4U/a9SSIBbsC9i78M75wP1GGU=
+  dependencies:
+    fbjs "^0.8.4"
+
 fbjs-css-vars@^1.0.0:
   version "1.0.2"
   resolved "https://registry.yarnpkg.com/fbjs-css-vars/-/fbjs-css-vars-1.0.2.tgz#216551136ae02fe255932c3ec8775f18e2c078b8"
@@ -2617,7 +2634,7 @@ fbjs-scripts@^1.1.0:
     semver "^5.1.0"
     through2 "^2.0.0"
 
-fbjs@^0.8.9:
+fbjs@^0.8.4, fbjs@^0.8.9:
   version "0.8.17"
   resolved "https://registry.yarnpkg.com/fbjs/-/fbjs-0.8.17.tgz#c4d598ead6949112653d6588b01a5cdcd9f90fdd"
   integrity sha1-xNWY6taUkRJlPWWIsBpc3Nn5D90=
@@ -4988,6 +5005,15 @@ react-lifecycles-compat@2.0.0:
   resolved "https://registry.yarnpkg.com/react-lifecycles-compat/-/react-lifecycles-compat-2.0.0.tgz#71d9c4cde47114c4102454f76da055c2bc48c948"
   integrity sha512-txfpPCQYiazVdcbMRhatqWKcAxJweUu2wDXvts5/7Wyp6+Y9cHojqXHsLPEckzutfHlxZhG8Oiundbmp8Fd6eQ==
 
+react-native-appearance@^0.3.4:
+  version "0.3.4"
+  resolved "https://registry.yarnpkg.com/react-native-appearance/-/react-native-appearance-0.3.4.tgz#2cbcbc5142cdc1898c116684f519b16c879cbec2"
+  integrity sha512-Vz3zdJbAEiMDwuw6wH98TT1WVfBvWjvANutYtkIbl16KGRCigtSgt6IIiLsF3/TSS3y3FtHhWDelFeGw/rtuig==
+  dependencies:
+    fbemitter "^2.1.1"
+    invariant "^2.2.4"
+    use-subscription "^1.0.0"
+
 react-native-navigation-hooks@^6.0.0:
   version "6.0.0"
   resolved "https://registry.yarnpkg.com/react-native-navigation-hooks/-/react-native-navigation-hooks-6.0.0.tgz#d0e92ddef9491497bae3bebd715f39cc91d4c3a4"
@@ -5003,6 +5029,11 @@ react-native-navigation@^6.5.0:
     prop-types "15.x.x"
     react-lifecycles-compat "2.0.0"
     tslib "1.9.3"
+
+react-native-themed-styles@^0.0.4:
+  version "0.0.4"
+  resolved "https://registry.yarnpkg.com/react-native-themed-styles/-/react-native-themed-styles-0.0.4.tgz#1e0026c8ddb94ac86be996841a91671ed6a6f35c"
+  integrity sha512-uhGmgbew2t+ChMc6mQliNSJ4szFkkgaQxQwXsAtjgMHNJyrX1dGgGTSJtEnjzSP6AMt5WanOn2pBv3ylZzRnBQ==
 
 react-native@0.62.2:
   version "0.62.2"

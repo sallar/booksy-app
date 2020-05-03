@@ -1,19 +1,34 @@
+import {useDebounce} from '@react-hook/debounce';
 import React, {useEffect, useState} from 'react';
-import {
-  Image,
-  ScrollView,
-  StyleSheet,
-  Text,
-  TouchableHighlight,
-  View,
-} from 'react-native';
+import {Image, ScrollView, Text, TouchableOpacity, View} from 'react-native';
 import {useNavigationSearchBarUpdate} from 'react-native-navigation-hooks';
+import {useTheme} from 'react-native-themed-styles';
 import {GoogleBook, searchBooks} from '../api/books';
 import {navigateTo, NavigationComponent} from '../navigation';
+import {styleSheetFactory} from '../themes';
 import Routes from './routes';
 
+const themedStyles = styleSheetFactory(theme => ({
+  listContainer: {
+    paddingVertical: 16,
+    flex: 1,
+    flexDirection: 'row',
+    flexWrap: 'wrap',
+  },
+  listItem: {
+    width: '50%',
+    alignItems: 'center',
+    marginBottom: 16,
+  },
+  listTitle: {
+    marginTop: 8,
+    color: theme.textColor,
+  },
+}));
+
 const SearchScreen: NavigationComponent = ({componentId}) => {
-  const [query, setQuery] = useState<string>('skyward');
+  const [styles] = useTheme(themedStyles);
+  const [query, setQuery] = useDebounce('skyward', 500);
   const [results, setResults] = useState<GoogleBook[]>([]);
 
   useNavigationSearchBarUpdate(e => {
@@ -43,7 +58,7 @@ const SearchScreen: NavigationComponent = ({componentId}) => {
       <View style={styles.listContainer}>
         {results.map(book => {
           return (
-            <TouchableHighlight
+            <TouchableOpacity
               onPress={() => navigateToBookDetails(book)}
               key={book.id}
               style={styles.listItem}>
@@ -60,7 +75,7 @@ const SearchScreen: NavigationComponent = ({componentId}) => {
                 />
                 <Text style={styles.listTitle}>{book.volumeInfo.title}</Text>
               </>
-            </TouchableHighlight>
+            </TouchableOpacity>
           );
         })}
       </View>
@@ -75,24 +90,6 @@ SearchScreen.options = () => ({
     title: {
       text: 'Search',
     },
-  },
-});
-
-const styles = StyleSheet.create({
-  listContainer: {
-    paddingVertical: 16,
-    flex: 1,
-    flexDirection: 'row',
-    flexWrap: 'wrap',
-  },
-  listItem: {
-    width: '50%',
-    alignItems: 'center',
-    marginBottom: 16,
-  },
-  listTitle: {
-    marginTop: 8,
-    color: 'white',
   },
 });
 
