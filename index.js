@@ -49,15 +49,6 @@ Navigation.events().registerAppLaunchedListener(() => {
                 {
                   component: {
                     name: 'app.Booksy.HomeScreen',
-                    options: {
-                      topBar: {
-                        searchBar: true,
-                        searchBarPlaceholder: 'Search your library...',
-                        title: {
-                          text: 'Booksy',
-                        },
-                      },
-                    },
                   },
                 },
               ],
@@ -75,16 +66,6 @@ Navigation.events().registerAppLaunchedListener(() => {
                 {
                   component: {
                     name: 'app.Booksy.SearchScreen',
-                    options: {
-                      topBar: {
-                        searchBar: true,
-                        searchBarPlaceholder:
-                          'Look for titles, authors, ISBN...',
-                        title: {
-                          text: 'Search',
-                        },
-                      },
-                    },
                   },
                 },
               ],
@@ -102,13 +83,6 @@ Navigation.events().registerAppLaunchedListener(() => {
                 {
                   component: {
                     name: 'app.Booksy.SettingsScreen',
-                    options: {
-                      topBar: {
-                        title: {
-                          text: 'Settings',
-                        },
-                      },
-                    },
                   },
                 },
               ],

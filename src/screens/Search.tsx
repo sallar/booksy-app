@@ -10,10 +10,9 @@ import {
 import {useNavigationSearchBarUpdate} from 'react-native-navigation-hooks';
 import {searchBooks, GoogleBook} from '../api/books';
 import {Navigation} from 'react-native-navigation';
+import {NavigationComponent} from '../types/navigation';
 
-const SearchScreen: React.FunctionComponent<{componentId: string}> = ({
-  componentId,
-}) => {
+const SearchScreen: NavigationComponent = ({componentId}) => {
   const [query, setQuery] = useState<string>('skyward');
   const [results, setResults] = useState<GoogleBook[]>([]);
 
@@ -40,13 +39,6 @@ const SearchScreen: React.FunctionComponent<{componentId: string}> = ({
         name: 'app.Booksy.BookDetails',
         passProps: {
           book,
-        },
-        options: {
-          topBar: {
-            title: {
-              text: book.volumeInfo.title,
-            },
-          },
         },
       },
     });
@@ -80,6 +72,16 @@ const SearchScreen: React.FunctionComponent<{componentId: string}> = ({
     </ScrollView>
   );
 };
+
+SearchScreen.options = () => ({
+  topBar: {
+    searchBar: true,
+    searchBarPlaceholder: 'Search by Title, Author or ISBN...',
+    title: {
+      text: 'Search',
+    },
+  },
+});
 
 const styles = StyleSheet.create({
   listContainer: {
