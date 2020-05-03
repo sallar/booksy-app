@@ -50,8 +50,6 @@ const themedStyles = styleSheetFactory(theme => ({
 const BookDetails: NavigationComponent<BookDetailsProps> = ({book}) => {
   const [styles] = useTheme(themedStyles);
 
-  console.log(styles.coverImage)
-
   return (
     <ScrollView>
       <View style={styles.cover}>
