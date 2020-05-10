@@ -1,10 +1,8 @@
-import {Navigation} from 'react-native-navigation';
-import App from './App';
-import {registerScreens} from './src/screens/register';
-import Routes from './src/screens/routes';
-import {setMainAsRoot, setAuthAsRoot} from './src/navigation';
-import {retrieve} from './src/utils/storage';
-import {setToken} from './src/api/auth';
+import { Navigation } from 'react-native-navigation';
+import { setCachedAuthToken } from './src/api/auth';
+import { setAuthAsRoot, setMainAsRoot } from './src/navigation';
+import { registerScreens } from './src/screens/register';
+import { retrieve } from './src/utils/storage';
 
 registerScreens();
 
@@ -34,12 +32,9 @@ Navigation.events().registerAppLaunchedListener(async () => {
     },
   });
 
-  // Set Root
-  // If user is authenticated do this:
-  // setMainAsRoot();
   const token = await retrieve('auth_key');
   if (token) {
-    setToken(token);
+    setCachedAuthToken(token);
     setMainAsRoot();
   } else {
     setAuthAsRoot();

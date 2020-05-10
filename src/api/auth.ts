@@ -1,4 +1,5 @@
 import Auth0 from 'react-native-auth0';
+import { Alert } from 'react-native';
 
 const auth0 = new Auth0({
   domain: 'booksyapp.eu.auth0.com',
@@ -7,37 +8,40 @@ const auth0 = new Auth0({
 
 let __userTokenCache: undefined | string;
 
-export const getToken = () => {
+export const getCachedAuthToken = () => {
   return __userTokenCache;
 };
 
-export const setToken = (token: string) => {
+export const setCachedAuthToken = (token: string) => {
   __userTokenCache = token;
 };
 
-export const authorize = async () => {
+export const authorizeUser = async (): Promise<string | null> => {
   try {
-    let credentials = await auth0.webAuth.authorize({
+    const credentials = await auth0.webAuth.authorize({
       scope: 'openid profile email',
     });
-    const {idToken} = credentials;
-    const resp = await fetch('http://localhost:3000/api/exchange', {
+    const { idToken } = credentials;
+    const resp = await fetch('https://api.booksy.app/api/exchange', {
       method: 'POST',
       headers: {
         Authorization: `Bearer ${idToken}`,
       },
     });
-    const {accessToken} = await resp.json();
+    const { accessToken } = await resp.json();
     return accessToken;
   } catch (error) {
-    return console.log(error);
+    Alert.alert('Something went wrong.');
+    console.error(error);
+    return null;
   }
 };
-
-export const clearSession = async () => {
+export const clearSession = async (): Promise<boolean> => {
   try {
-    return auth0.webAuth.clearSession();
+    await auth0.webAuth.clearSession();
+    return true;
   } catch (error) {
-    console.log('Log out cancelled');
+    console.error(error);
+    return false;
   }
 };
