@@ -1,14 +1,14 @@
-import {useDebounce} from '@react-hook/debounce';
-import React, {useEffect, useState} from 'react';
-import {Image, ScrollView, Text, TouchableOpacity, View} from 'react-native';
-import {useNavigationSearchBarUpdate} from 'react-native-navigation-hooks';
-import {useTheme} from 'react-native-themed-styles';
-import {GoogleBook, searchBooks} from '../api/books';
-import {navigateTo, NavigationComponent} from '../navigation';
-import {styleSheetFactory} from '../themes';
+import { useDebounce } from '@react-hook/debounce';
+import React, { useEffect, useState } from 'react';
+import { Image, ScrollView, Text, TouchableOpacity, View } from 'react-native';
+import { useNavigationSearchBarUpdate } from 'react-native-navigation-hooks';
+import { useTheme } from 'react-native-themed-styles';
+import { GoogleBook, searchBooks } from '../api/books';
+import { navigateTo, NavigationComponent } from '../navigation';
+import { styleSheetFactory } from '../themes';
 import Routes from './routes';
 
-const themedStyles = styleSheetFactory(theme => ({
+const themedStyles = styleSheetFactory((theme) => ({
   listContainer: {
     paddingVertical: 16,
     flex: 1,
@@ -26,12 +26,12 @@ const themedStyles = styleSheetFactory(theme => ({
   },
 }));
 
-const SearchScreen: NavigationComponent = ({componentId}) => {
+const SearchScreen: NavigationComponent = ({ componentId }) => {
   const [styles] = useTheme(themedStyles);
   const [query, setQuery] = useDebounce('skyward', 500);
   const [results, setResults] = useState<GoogleBook[]>([]);
 
-  useNavigationSearchBarUpdate(e => {
+  useNavigationSearchBarUpdate((e) => {
     if (e.isFocused) {
       setQuery(e.text);
     } else {
@@ -43,7 +43,7 @@ const SearchScreen: NavigationComponent = ({componentId}) => {
     if (query === '') {
       return;
     }
-    searchBooks(query).then(res => {
+    searchBooks(query).then((res) => {
       setResults(res);
     });
   }, [query]);
@@ -56,7 +56,7 @@ const SearchScreen: NavigationComponent = ({componentId}) => {
   return (
     <ScrollView>
       <View style={styles.listContainer}>
-        {results.map(book => {
+        {results.map((book) => {
           return (
             <TouchableOpacity
               onPress={() => navigateToBookDetails(book)}
@@ -65,7 +65,7 @@ const SearchScreen: NavigationComponent = ({componentId}) => {
               <>
                 <Image
                   resizeMode="contain"
-                  style={{width: 150, height: 200}}
+                  style={{ width: 150, height: 200 }}
                   source={{
                     uri: book.volumeInfo.imageLinks.thumbnail.replace(
                       'http://',

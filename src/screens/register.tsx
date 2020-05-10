@@ -22,7 +22,7 @@ export const registerScreens = () => {
   map.forEach((ScreenComponent, route) => {
     Navigation.registerComponent(
       route,
-      () => props => (
+      () => (props) => (
         <AppProvider>
           <ScreenComponent {...props} />
         </AppProvider>

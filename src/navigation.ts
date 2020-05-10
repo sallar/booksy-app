@@ -1,4 +1,4 @@
-import {Options, Navigation} from 'react-native-navigation';
+import { Options, Navigation } from 'react-native-navigation';
 import Routes from './screens/routes';
 
 export interface NavigationComponentOptions<P> {

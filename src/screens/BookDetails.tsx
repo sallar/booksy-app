@@ -9,7 +9,7 @@ interface BookDetailsProps {
   book: GoogleBook;
 }
 
-const themedStyles = styleSheetFactory(theme => ({
+const themedStyles = styleSheetFactory((theme) => ({
   cover: {
     flex: 1,
     flexDirection: 'row',
@@ -24,7 +24,7 @@ const themedStyles = styleSheetFactory(theme => ({
   coverBackground: {
     width: '100%',
     height: 250,
-    position: 'absolute'
+    position: 'absolute',
   },
   coverImage: {
     width: 150,
@@ -47,22 +47,22 @@ const themedStyles = styleSheetFactory(theme => ({
   },
 }));
 
-const BookDetails: NavigationComponent<BookDetailsProps> = ({book}) => {
+const BookDetails: NavigationComponent<BookDetailsProps> = ({ book }) => {
   const [styles] = useTheme(themedStyles);
 
   return (
     <ScrollView>
       <View style={styles.cover}>
         <Image
-          source={{uri: book.volumeInfo.imageLinks.thumbnail}}
+          source={{ uri: book.volumeInfo.imageLinks.thumbnail }}
           resizeMode="cover"
           blurRadius={10}
-          style={styles.coverBackground as ImageStyle} // @TODO: Fix this 
+          style={styles.coverBackground as ImageStyle} // @TODO: Fix this
         />
         <Image
-          source={{uri: book.volumeInfo.imageLinks.thumbnail}}
+          source={{ uri: book.volumeInfo.imageLinks.thumbnail }}
           resizeMode="contain"
-          style={styles.coverImage as ImageStyle} // @TODO: Fix this 
+          style={styles.coverImage as ImageStyle} // @TODO: Fix this
         />
         <View style={styles.coverTitles}>
           <Text style={styles.coverTitle}>{book.volumeInfo.title}</Text>
@@ -82,7 +82,7 @@ const BookDetails: NavigationComponent<BookDetailsProps> = ({book}) => {
   );
 };
 
-BookDetails.options = props => ({
+BookDetails.options = (props) => ({
   topBar: {
     title: {
       text: props?.book.volumeInfo.title ?? 'Unknown',

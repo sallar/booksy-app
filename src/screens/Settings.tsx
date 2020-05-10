@@ -1,9 +1,9 @@
 import React from 'react';
-import {Text, View, Button, ActivityIndicator} from 'react-native';
-import {NavigationComponent, setAuthAsRoot} from '../navigation';
-import {clearSession} from '../api/auth';
-import {remove} from '../utils/storage';
-import {useQuery} from 'urql';
+import { Text, View, Button, ActivityIndicator } from 'react-native';
+import { NavigationComponent, setAuthAsRoot } from '../navigation';
+import { clearSession } from '../api/auth';
+import { remove } from '../utils/storage';
+import { useQuery } from 'urql';
 
 const SettingsScreen: NavigationComponent = () => {
   const [res, executeQuery] = useQuery({
@@ -19,12 +19,12 @@ const SettingsScreen: NavigationComponent = () => {
   };
 
   return (
-    <View style={{flex: 1, alignItems: 'center', justifyContent: 'center'}}>
+    <View style={{ flex: 1, alignItems: 'center', justifyContent: 'center' }}>
       {res.fetching && <ActivityIndicator />}
       {res.data && res.data.me && (
         <>
-          <Text style={{color: 'white'}}>{res.data.me.username}</Text>
-          <Text style={{color: 'white'}}>{res.data.me.email}</Text>
+          <Text style={{ color: 'white' }}>{res.data.me.username}</Text>
+          <Text style={{ color: 'white' }}>{res.data.me.email}</Text>
           <Button title="Logout" onPress={onLogoutClicked} />
         </>
       )}

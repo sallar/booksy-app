@@ -20,7 +20,9 @@ export const searchBooks = async (query: string): Promise<GoogleBook[]> => {
       )}`,
     );
     const json = await results.json();
-    return (json.items as GoogleBook[]).filter(book => book.volumeInfo.imageLinks?.thumbnail);
+    return (json.items as GoogleBook[]).filter(
+      (book) => book.volumeInfo.imageLinks?.thumbnail,
+    );
   } catch (err) {
     return [];
   }
