@@ -3,6 +3,7 @@ enum Routes {
   SearchScreen = 'app.Booksy.SearchScreen',
   SettingsScreen = 'app.Booksy.SettingsScreen',
   BookDetails = 'app.Booksy.BookDetails',
+  AuthScreen = 'app.Booksy.AuthScreen',
 }
 
 export default Routes;

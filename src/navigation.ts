@@ -75,7 +75,19 @@ export const setMainAsRoot = () =>
   });
 
 export const setAuthAsRoot = () => {
-  // @TODO: Implement Auth
+  Navigation.setRoot({
+    root: {
+      stack: {
+        children: [
+          {
+            component: {
+              name: Routes.AuthScreen,
+            },
+          },
+        ],
+      },
+    },
+  });
 };
 
 export const navigateTo = (

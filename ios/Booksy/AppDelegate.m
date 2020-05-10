@@ -1,5 +1,6 @@
 #import "AppDelegate.h"
 #import <ReactNativeNavigation/ReactNativeNavigation.h>
+#import <React/RCTLinkingManager.h>
 
 #import <React/RCTBundleURLProvider.h>
 
@@ -41,6 +42,12 @@ static void InitializeFlipper(UIApplication *application) {
 #else
   return [[NSBundle mainBundle] URLForResource:@"main" withExtension:@"jsbundle"];
 #endif
+}
+
+- (BOOL)application:(UIApplication *)app openURL:(NSURL *)url
+            options:(NSDictionary<UIApplicationOpenURLOptionsKey, id> *)options
+{
+  return [RCTLinkingManager application:app openURL:url options:options];
 }
 
 @end
