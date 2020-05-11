@@ -5,6 +5,7 @@
   "scripts": {
     "android": "react-native run-android",
     "ios": "react-native run-ios",
+    "tsc:watch": "tsc -w",
     "start": "react-native start",
     "test": "jest",
     "lint": "eslint ."
@@ -28,9 +29,10 @@
   },
   "devDependencies": {
     "@babel/core": "^7.6.2",
-    "@babel/runtime": "^7.6.2",
     "@babel/plugin-proposal-decorators": "^7.8.3",
+    "@babel/runtime": "^7.6.2",
     "@react-native-community/eslint-config": "^0.0.5",
+    "@types/fbemitter": "^2.0.32",
     "@types/react": "^16.9.34",
     "@types/react-native": "^0.62.5",
     "@types/react-native-auth0": "^2.0.1",
@@ -39,7 +41,8 @@
     "jest": "^24.9.0",
     "metro-react-native-babel-preset": "^0.58.0",
     "prettier": "^2.0.5",
-    "react-test-renderer": "16.11.0"
+    "react-test-renderer": "16.11.0",
+    "typescript": "^3.8.3"
   },
   "jest": {
     "preset": "react-native"

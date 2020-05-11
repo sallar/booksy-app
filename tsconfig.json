@@ -5,13 +5,14 @@
     "esModuleInterop": true,
     "isolatedModules": true,
     "jsx": "react",
-    "lib": ["ES2017"],
+    "lib": ["ESNext"],
     "moduleResolution": "node",
     "experimentalDecorators": true,
     "noEmit": true,
     "strict": true,
     "target": "esnext"
   },
+  "include": ["src/"],
   "exclude": [
     "node_modules",
     "babel.config.js",
