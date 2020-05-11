@@ -1,13 +1,22 @@
+import AsyncStorage from '@react-native-community/async-storage';
+import { create } from 'mobx-persist';
+import 'mobx-react-lite/batchingForReactNative';
 import { Navigation } from 'react-native-navigation';
-import { setCachedAuthToken } from './src/api/auth';
 import { setAuthAsRoot, setMainAsRoot } from './src/navigation';
 import { registerScreens } from './src/screens/register';
-import { retrieve } from './src/utils/storage';
+import { appStore } from './src/store/app.store';
 
 registerScreens();
 
+async function hydrateStores() {
+  const hydrate = create({ storage: AsyncStorage });
+  await hydrate('AppStore', appStore);
+}
+
 // Listen for project start event
 Navigation.events().registerAppLaunchedListener(async () => {
+  await hydrateStores();
+
   // Default Options
   Navigation.setDefaultOptions({
     statusBar: {
@@ -32,9 +41,7 @@ Navigation.events().registerAppLaunchedListener(async () => {
     },
   });
 
-  const token = await retrieve('auth_key');
-  if (token) {
-    setCachedAuthToken(token);
+  if (appStore.token) {
     setMainAsRoot();
   } else {
     setAuthAsRoot();

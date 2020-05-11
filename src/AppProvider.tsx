@@ -1,12 +1,12 @@
 import React from 'react';
 import { AppearanceProvider } from 'react-native-appearance';
 import { createClient, Provider } from 'urql';
-import { getCachedAuthToken } from './api/auth';
+import { appStore } from './store/app.store';
 
 const client = createClient({
   url: 'https://graphql.fauna.com/graphql',
   fetchOptions: () => {
-    const token = getCachedAuthToken();
+    const token = appStore.token;
     if (!token) {
       return {};
     }

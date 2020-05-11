@@ -6,16 +6,6 @@ const auth0 = new Auth0({
   clientId: 'sBKuIRVvlviUv9OSn4zBfrCj7ph3qbS5',
 });
 
-let __userTokenCache: undefined | string;
-
-export const getCachedAuthToken = () => {
-  return __userTokenCache;
-};
-
-export const setCachedAuthToken = (token: string) => {
-  __userTokenCache = token;
-};
-
 export const authorizeUser = async (): Promise<string | null> => {
   try {
     const credentials = await auth0.webAuth.authorize({
@@ -36,6 +26,7 @@ export const authorizeUser = async (): Promise<string | null> => {
     return null;
   }
 };
+
 export const clearSession = async (): Promise<boolean> => {
   try {
     await auth0.webAuth.clearSession();

@@ -1,19 +1,19 @@
 import React, { useState } from 'react';
-import { Button, View, ActivityIndicator } from 'react-native';
-import { authorizeUser, setCachedAuthToken } from '../api/auth';
+import { ActivityIndicator, Button, View } from 'react-native';
+import { authorizeUser } from '../api/auth';
 import { NavigationComponent, setMainAsRoot } from '../navigation';
-import { store } from '../utils/storage';
+import { useAppState } from '../store/app.store';
 
 const AuthScreen: NavigationComponent = () => {
   const [loading, setLoading] = useState(false);
+  const { setToken } = useAppState();
 
   const handleSignInClicked = async () => {
     setLoading(true);
     const result = await authorizeUser();
     setLoading(false);
     if (result) {
-      await store('auth_key', result);
-      setCachedAuthToken(result);
+      setToken(result);
       setMainAsRoot();
     }
   };

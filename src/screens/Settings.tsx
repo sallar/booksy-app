@@ -1,20 +1,22 @@
+import { observer } from 'mobx-react-lite';
 import React from 'react';
-import { Text, View, Button, ActivityIndicator } from 'react-native';
-import { NavigationComponent, setAuthAsRoot } from '../navigation';
-import { clearSession } from '../api/auth';
-import { remove } from '../utils/storage';
+import { ActivityIndicator, Button, Text, View } from 'react-native';
 import { useQuery } from 'urql';
+import { clearSession } from '../api/auth';
+import { NavigationComponent, setAuthAsRoot } from '../navigation';
+import { useAppState } from '../store/app.store';
 
-const SettingsScreen: NavigationComponent = () => {
+const SettingsScreen: NavigationComponent = observer(() => {
   const [res, executeQuery] = useQuery({
     query: `
       query { me { email username } }
     `,
   });
+  const { clearToken } = useAppState();
 
   const onLogoutClicked = async () => {
     await clearSession();
-    await remove('auth_key');
+    clearToken();
     setAuthAsRoot();
   };
 
@@ -30,7 +32,7 @@ const SettingsScreen: NavigationComponent = () => {
       )}
     </View>
   );
-};
+});
 
 SettingsScreen.options = () => ({
   topBar: {

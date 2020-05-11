@@ -14,6 +14,9 @@
     "@react-hook/throttle": "^2.1.2",
     "@react-native-community/async-storage": "^1.10.0",
     "graphql": "^15.0.0",
+    "mobx": "^5.15.4",
+    "mobx-persist": "^0.4.1",
+    "mobx-react-lite": "^2.0.6",
     "react": "16.11.0",
     "react-native": "0.62.2",
     "react-native-appearance": "^0.3.4",
@@ -26,6 +29,7 @@
   "devDependencies": {
     "@babel/core": "^7.6.2",
     "@babel/runtime": "^7.6.2",
+    "@babel/plugin-proposal-decorators": "^7.8.3",
     "@react-native-community/eslint-config": "^0.0.5",
     "@types/react": "^16.9.34",
     "@types/react-native": "^0.62.5",
