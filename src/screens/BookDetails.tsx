@@ -2,8 +2,10 @@ import React from 'react';
 import { Image, ImageStyle, ScrollView, Text, View } from 'react-native';
 import { useTheme } from 'react-native-themed-styles';
 import { GoogleBook } from '../api/books';
-import { NavigationComponent } from '../navigation';
+import { NavigationComponent, showModal } from '../navigation';
 import { styleSheetFactory } from '../themes';
+import { useNavigationButtonPress } from 'react-native-navigation-hooks/dist';
+import Routes from './routes';
 
 interface BookDetailsProps {
   book: GoogleBook;
@@ -47,8 +49,21 @@ const themedStyles = styleSheetFactory((theme) => ({
   },
 }));
 
-const BookDetails: NavigationComponent<BookDetailsProps> = ({ book }) => {
+const BookDetails: NavigationComponent<BookDetailsProps> = ({
+  book,
+  componentId,
+}) => {
   const [styles] = useTheme(themedStyles);
+
+  useNavigationButtonPress(
+    (e) => {
+      showModal(componentId, Routes.ShelvesScreen, {
+        book,
+      });
+    },
+    componentId,
+    'add-book-button',
+  );
 
   return (
     <ScrollView>
@@ -87,6 +102,12 @@ BookDetails.options = (props) => ({
     title: {
       text: props?.book.volumeInfo.title ?? 'Unknown',
     },
+    rightButtons: [
+      {
+        id: 'add-book-button',
+        text: 'Add',
+      },
+    ],
   },
 });
 

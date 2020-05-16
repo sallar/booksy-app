@@ -8,6 +8,7 @@ import HomeScreen from './Home';
 import Routes from './routes';
 import SearchScreen from './Search';
 import SettingsScreen from './Settings';
+import ShelvesScreen from './Shelves';
 
 const map = new Map<Routes, NavigationComponent<any>>();
 
@@ -17,6 +18,7 @@ map.set(Routes.SearchScreen, SearchScreen);
 map.set(Routes.BookDetails, BookDetails);
 map.set(Routes.SettingsScreen, SettingsScreen);
 map.set(Routes.AuthScreen, AuthScreen);
+map.set(Routes.ShelvesScreen, ShelvesScreen);
 
 export const registerScreens = () => {
   map.forEach((ScreenComponent, route) => {

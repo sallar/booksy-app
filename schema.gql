@@ -1,0 +1,39 @@
+type User {
+  username: String!
+  email: String!
+  shelves: [Shelf] @relation
+}
+
+type Book {
+  shelves: [Shelf] @relation
+  source: BookSource @relation
+}
+
+type Shelf {
+  title: String!
+  key: String!
+  owner: User! @relation
+  books: [Book] @relation
+}
+
+type BookSource {
+  googleBookId: ID!
+  volumeInfo: BookSourceVolumeInfo!
+}
+
+type BookSourceVolumeInfo @embedded {
+  title: String!
+  authors: [String!]!
+  publisher: String!
+  description: String!
+  imageLinks: BookSourceImageLinks
+}
+
+type BookSourceImageLinks @embedded {
+  smallThumbnail: String
+  thumbnail: String
+}
+
+type Query {
+  myself: User! @resolver(name: "fetch_me")
+}

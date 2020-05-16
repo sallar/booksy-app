@@ -101,3 +101,26 @@ export const navigateTo = (
       passProps,
     },
   });
+
+export const showModal = (
+  componentId: string,
+  route: Routes,
+  passProps: any = {},
+) => {
+  Navigation.showModal({
+    stack: {
+      children: [
+        {
+          component: {
+            name: route,
+            passProps,
+          },
+        },
+      ],
+    },
+  });
+};
+
+export const dismissModal = (componentId: string) => {
+  Navigation.dismissModal(componentId);
+};

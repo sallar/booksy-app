@@ -1,3 +1,5 @@
+import pick from 'ramda/es/pick';
+
 export interface GoogleBook {
   id: string;
   volumeInfo: {
@@ -11,6 +13,18 @@ export interface GoogleBook {
     };
   };
 }
+
+export const googleBookToBookSource = (book: any): GoogleBook => {
+  const { id, ...data } = book;
+
+  return {
+    id,
+    volumeInfo: pick<GoogleBook['volumeInfo'], string>(
+      ['title', 'authors', 'publisher', 'description', 'imageLinks'],
+      data.volumeInfo,
+    ),
+  };
+};
 
 export const searchBooks = async (query: string): Promise<GoogleBook[]> => {
   try {
