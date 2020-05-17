@@ -9,7 +9,7 @@ import { useAppState } from '../store/app.store';
 const SettingsScreen: NavigationComponent = observer(() => {
   const [res, executeQuery] = useQuery({
     query: `
-      query { myself { email username } }
+      query { me { email username } }
     `,
   });
   const { clearToken } = useAppState();
@@ -23,10 +23,10 @@ const SettingsScreen: NavigationComponent = observer(() => {
   return (
     <View style={{ flex: 1, alignItems: 'center', justifyContent: 'center' }}>
       {res.fetching && <ActivityIndicator />}
-      {res.data && res.data.myself && (
+      {res.data && res.data.me && (
         <>
-          <Text style={{ color: 'white' }}>{res.data.myself.username}</Text>
-          <Text style={{ color: 'white' }}>{res.data.myself.email}</Text>
+          <Text style={{ color: 'white' }}>{res.data.me.username}</Text>
+          <Text style={{ color: 'white' }}>{res.data.me.email}</Text>
         </>
       )}
       <Button title="Logout" onPress={onLogoutClicked} />

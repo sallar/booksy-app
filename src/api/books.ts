@@ -41,3 +41,22 @@ export const searchBooks = async (query: string): Promise<GoogleBook[]> => {
     return [];
   }
 };
+
+export const getInternalBookId = async (
+  book: GoogleBook,
+): Promise<string | null> => {
+  try {
+    const results = await fetch('https://api.booksy.app/api/add-book', {
+      method: 'POST',
+      body: JSON.stringify(book),
+      headers: {
+        'Content-Type': 'application/json',
+      },
+    });
+    const json = await results.json();
+    return json.id;
+  } catch (err) {
+    console.error(err);
+    return null;
+  }
+};
