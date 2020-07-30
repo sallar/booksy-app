@@ -5146,15 +5146,15 @@ react-native-auth0@^2.3.1:
     jwt-decode "^2.2.0"
     url "^0.11.0"
 
-react-native-navigation-hooks@^6.0.0:
-  version "6.0.0"
-  resolved "https://registry.yarnpkg.com/react-native-navigation-hooks/-/react-native-navigation-hooks-6.0.0.tgz#d0e92ddef9491497bae3bebd715f39cc91d4c3a4"
-  integrity sha512-5QaZ0ZarJ83H0X1ddoQ6jzsVlQapshOpVM7Q6aksPF7ePtGxvTJrYFqyMIrbo3f7PXleFQgoKzKNSmlUc66RvQ==
+react-native-navigation-hooks@^6.0.2:
+  version "6.0.2"
+  resolved "https://registry.yarnpkg.com/react-native-navigation-hooks/-/react-native-navigation-hooks-6.0.2.tgz#805e1d6365b66991ef4a47044087198eb743fc68"
+  integrity sha512-pSB/UVWlmm5gFYnBhlP7hpx93Hn/BPaBAC+LxjABvWQMhOPFheyEESTEMYd5AfA8bRnDZ3x68/tUzwcbQzbtBg==
 
-react-native-navigation@^6.5.0:
-  version "6.5.0"
-  resolved "https://registry.yarnpkg.com/react-native-navigation/-/react-native-navigation-6.5.0.tgz#8a1307d60d2a58682fd6f6156f3a31a945e259ff"
-  integrity sha512-iW5/vETRVJh6xRCavWzSVorJAbjIimHE1W4WYnvtedaM2+mum9qLNNOM7Z/il6HG5Xm6M4Zf+IfzZgfWjcndJA==
+react-native-navigation@^6.10.1:
+  version "6.10.1"
+  resolved "https://registry.yarnpkg.com/react-native-navigation/-/react-native-navigation-6.10.1.tgz#09a4ccfc29ff8b8144eed6fd88b0141e299d0de0"
+  integrity sha512-u4rCwV/9fkxuKTQ6qPw4QUtLBAZFJlKb7AWnPcitk+7wJFH+KG8red8iy2sQiZ7GqoCCLAbt6+izVH8sD9NIcg==
   dependencies:
     hoist-non-react-statics "3.x.x"
     lodash "4.17.x"

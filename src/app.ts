@@ -26,18 +26,22 @@ Navigation.events().registerAppLaunchedListener(async () => {
     },
     topBar: {
       drawBehind: true,
+      background: {
+        translucent: true,
+      },
       largeTitle: {
         visible: true,
       },
     },
     bottomTab: {
-      iconColor: 'white',
-      selectedIconColor: '#147EFB',
-      textColor: 'white',
-      selectedTextColor: '#147EFB',
+      // iconColor: 'white',
+      // selectedIconColor: '#147EFB',
+      // textColor: 'white',
+      // selectedTextColor: '#147EFB',
     },
     bottomTabs: {
       drawBehind: true,
+      translucent: true,
     },
   });
 
