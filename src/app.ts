@@ -34,10 +34,10 @@ Navigation.events().registerAppLaunchedListener(async () => {
       },
     },
     bottomTab: {
-      // iconColor: 'white',
-      // selectedIconColor: '#147EFB',
-      // textColor: 'white',
-      // selectedTextColor: '#147EFB',
+      iconColor: 'white',
+      selectedIconColor: '#147EFB',
+      textColor: 'white',
+      selectedTextColor: '#147EFB',
     },
     bottomTabs: {
       drawBehind: true,
