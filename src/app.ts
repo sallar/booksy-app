@@ -26,6 +26,9 @@ Navigation.events().registerAppLaunchedListener(async () => {
     },
     topBar: {
       drawBehind: true,
+      background: {
+        translucent: true,
+      },
       largeTitle: {
         visible: true,
       },
@@ -38,6 +41,7 @@ Navigation.events().registerAppLaunchedListener(async () => {
     },
     bottomTabs: {
       drawBehind: true,
+      translucent: true,
     },
   });
 
