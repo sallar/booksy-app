@@ -1,12 +1,13 @@
 import { useDebounce } from '@react-hook/debounce';
 import React, { useEffect, useState } from 'react';
 import { Image, ScrollView, Text, TouchableOpacity, View } from 'react-native';
+import { NavigationFunctionComponent } from 'react-native-navigation';
 import { useNavigationSearchBarUpdate } from 'react-native-navigation-hooks';
 import { useTheme } from 'react-native-themed-styles';
 import { GoogleBook, searchBooks } from '../api/books';
-import { navigateTo, NavigationComponent } from '../navigation';
+import Routes from '../navigation/routes';
+import { Navigation } from '../navigation/utils';
 import { styleSheetFactory } from '../themes';
-import Routes from './routes';
 
 const themedStyles = styleSheetFactory((theme) => ({
   listContainer: {
@@ -26,7 +27,7 @@ const themedStyles = styleSheetFactory((theme) => ({
   },
 }));
 
-const SearchScreen: NavigationComponent = ({ componentId }) => {
+const SearchScreen: NavigationFunctionComponent = ({ componentId }) => {
   const [styles] = useTheme(themedStyles);
   const [query, setQuery] = useDebounce('skyward', 500);
   const [results, setResults] = useState<GoogleBook[]>([]);
@@ -49,8 +50,9 @@ const SearchScreen: NavigationComponent = ({ componentId }) => {
   }, [query]);
 
   const navigateToBookDetails = (book: GoogleBook) =>
-    navigateTo(componentId, Routes.BookDetails, {
-      book,
+    Navigation.push(componentId, {
+      name: Routes.BookDetails,
+      passProps: { book },
     });
 
   return (
@@ -85,8 +87,11 @@ const SearchScreen: NavigationComponent = ({ componentId }) => {
 
 SearchScreen.options = () => ({
   topBar: {
-    searchBar: true,
-    searchBarPlaceholder: 'Search by Title, Author or ISBN...',
+    searchBar: {
+      visible: true,
+      hideTopBarOnFocus: true,
+      placeholder: 'Search by Title, Author or ISBN...',
+    },
     title: {
       text: 'Search',
     },

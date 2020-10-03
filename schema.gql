@@ -4,21 +4,17 @@ type User @collection(name: "users") {
   shelves: [Shelf] @relation
 }
 
-type UserBook @collection(name: "user_books") {
-  shelves: [Shelf] @relation
-  source: Book @relation
-}
-
 type Shelf @collection(name: "shelves") {
   title: String!
   key: String!
   owner: User! @relation
-  books: [UserBook] @relation
+  books: [Book] @relation
 }
 
 type Book @collection(name: "books") {
   googleBookId: ID!
   volumeInfo: BookSourceVolumeInfo!
+  shelves: [Shelf] @relation
 }
 
 type BookSourceVolumeInfo @embedded {
@@ -36,4 +32,6 @@ type BookSourceImageLinks @embedded {
 
 type Query {
   me: User! @resolver(name: "fetch_me")
+  findShelvesByBookAndUser(bookID: ID!, userID: ID!): [Shelf]!
+    @resolver(name: "find_shelves_by_book_and_user", paginated: true)
 }

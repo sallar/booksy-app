@@ -1,10 +1,11 @@
 import React, { useState } from 'react';
 import { ActivityIndicator, Button, View } from 'react-native';
+import { NavigationFunctionComponent } from 'react-native-navigation';
 import { authorizeUser } from '../api/auth';
-import { NavigationComponent, setMainAsRoot } from '../navigation';
+import { setMainAsRoot } from '../navigation/layouts';
 import { useAppState } from '../store/app.store';
 
-const AuthScreen: NavigationComponent = () => {
+const AuthScreen: NavigationFunctionComponent = () => {
   const [loading, setLoading] = useState(false);
   const { setToken } = useAppState();
 

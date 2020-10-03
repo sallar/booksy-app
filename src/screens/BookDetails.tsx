@@ -1,11 +1,12 @@
 import React from 'react';
 import { Image, ImageStyle, ScrollView, Text, View } from 'react-native';
+import { NavigationFunctionComponent } from 'react-native-navigation';
+import { useNavigationButtonPress } from 'react-native-navigation-hooks/dist';
 import { useTheme } from 'react-native-themed-styles';
 import { GoogleBook } from '../api/books';
-import { NavigationComponent, showModal } from '../navigation';
+import Routes from '../navigation/routes';
+import { Navigation } from '../navigation/utils';
 import { styleSheetFactory } from '../themes';
-import { useNavigationButtonPress } from 'react-native-navigation-hooks/dist';
-import Routes from './routes';
 
 interface BookDetailsProps {
   book: GoogleBook;
@@ -49,7 +50,7 @@ const themedStyles = styleSheetFactory((theme) => ({
   },
 }));
 
-const BookDetails: NavigationComponent<BookDetailsProps> = ({
+const BookDetails: NavigationFunctionComponent<BookDetailsProps> = ({
   book,
   componentId,
 }) => {
@@ -57,9 +58,7 @@ const BookDetails: NavigationComponent<BookDetailsProps> = ({
 
   useNavigationButtonPress(
     (e) => {
-      showModal(componentId, Routes.ShelvesScreen, {
-        book,
-      });
+      Navigation.showModal({ name: Routes.ShelvesScreen, passProps: { book } });
     },
     componentId,
     'add-book-button',

@@ -3034,7 +3034,7 @@ hermes-engine@~0.5.0:
   resolved "https://registry.yarnpkg.com/hermes-engine/-/hermes-engine-0.5.0.tgz#d914acce72e9657b3c98875ad3f9094d8643f327"
   integrity sha512-jSuHiOhdh2+IF3bH2gLpQ37eMkdUrEb9GK6PoG3rLRaUDK3Zn2Y9fXM+wyDfoUTA3gz9EET0/IIWk5k21qp4kw==
 
-hoist-non-react-statics@3.x.x:
+hoist-non-react-statics@3.3.2, hoist-non-react-statics@3.x.x:
   version "3.3.2"
   resolved "https://registry.yarnpkg.com/hoist-non-react-statics/-/hoist-non-react-statics-3.3.2.tgz#ece0acaf71d62c2969c2ec59feff42a4b1a85b45"
   integrity sha512-/gGivxi8JPKWNm/W0jSmzcMPpfpPLc3dY/6GxhX2hQ9iGj3aDfklV4ET7NjKpSinLpJ5vafa9iiGIEZg10SfBw==
@@ -5187,15 +5187,17 @@ react-native-auth0@^2.3.1:
     jwt-decode "^2.2.0"
     url "^0.11.0"
 
-react-native-navigation-hooks@^6.0.2:
-  version "6.0.2"
-  resolved "https://registry.yarnpkg.com/react-native-navigation-hooks/-/react-native-navigation-hooks-6.0.2.tgz#805e1d6365b66991ef4a47044087198eb743fc68"
-  integrity sha512-pSB/UVWlmm5gFYnBhlP7hpx93Hn/BPaBAC+LxjABvWQMhOPFheyEESTEMYd5AfA8bRnDZ3x68/tUzwcbQzbtBg==
+react-native-navigation-hooks@^6.2.0:
+  version "6.2.0"
+  resolved "https://registry.yarnpkg.com/react-native-navigation-hooks/-/react-native-navigation-hooks-6.2.0.tgz#9c06875a3f4c64f45084ec439ceac9f3a1ae91fd"
+  integrity sha512-3vn6414s9rNR8ExuEiNOb1bWkU57YSUcvgj0yf2Ie9cUCeC1qxcSB2GmA+TeGZuUxzkFQhx+B0pXuIRtfn2OfQ==
+  dependencies:
+    hoist-non-react-statics "3.3.2"
 
-react-native-navigation@^6.10.1:
-  version "6.10.1"
-  resolved "https://registry.yarnpkg.com/react-native-navigation/-/react-native-navigation-6.10.1.tgz#09a4ccfc29ff8b8144eed6fd88b0141e299d0de0"
-  integrity sha512-u4rCwV/9fkxuKTQ6qPw4QUtLBAZFJlKb7AWnPcitk+7wJFH+KG8red8iy2sQiZ7GqoCCLAbt6+izVH8sD9NIcg==
+react-native-navigation@^7.1.0:
+  version "7.1.0"
+  resolved "https://registry.yarnpkg.com/react-native-navigation/-/react-native-navigation-7.1.0.tgz#05dbfc6b31dd6a8aa626a74b2f51e1cc031b230d"
+  integrity sha512-Ub5eegREee2kyI8OXAzPXAe9dJgVBpj8k3Ni4HfzA2D3+xVGwvskCmKkIJm2xU/i1GcM9TdzoloB1JHsAZl6Qw==
   dependencies:
     hoist-non-react-statics "3.x.x"
     lodash "4.17.x"

@@ -1,16 +1,18 @@
 import React from 'react';
-import { Navigation } from 'react-native-navigation';
+import {
+  Navigation,
+  NavigationFunctionComponent,
+} from 'react-native-navigation';
 import AppProvider from '../AppProvider';
-import { NavigationComponent } from '../navigation';
-import AuthScreen from './Auth';
-import BookDetails from './BookDetails';
-import HomeScreen from './Home';
+import AuthScreen from '../screens/Auth';
+import BookDetails from '../screens/BookDetails';
+import HomeScreen from '../screens/Home';
+import SearchScreen from '../screens/Search';
+import SettingsScreen from '../screens/Settings';
+import ShelvesScreen from '../screens/Shelves';
 import Routes from './routes';
-import SearchScreen from './Search';
-import SettingsScreen from './Settings';
-import ShelvesScreen from './Shelves';
 
-const map = new Map<Routes, NavigationComponent<any>>();
+const map = new Map<Routes, NavigationFunctionComponent<any>>();
 
 // Add screens
 map.set(Routes.HomeScreen, HomeScreen);

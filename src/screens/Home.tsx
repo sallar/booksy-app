@@ -1,9 +1,9 @@
 import { observer } from 'mobx-react-lite';
 import React from 'react';
 import { Text, View } from 'react-native';
-import { NavigationComponent } from '../navigation';
+import { NavigationFunctionComponent } from 'react-native-navigation';
 
-const HomeScreen: NavigationComponent = observer(() => {
+const HomeScreen: NavigationFunctionComponent = observer(() => {
   return (
     <View style={{ flex: 1, alignItems: 'center', justifyContent: 'center' }}>
       <Text style={{ color: 'white' }}>Home Screen</Text>
@@ -13,8 +13,10 @@ const HomeScreen: NavigationComponent = observer(() => {
 
 HomeScreen.options = () => ({
   topBar: {
-    searchBar: true,
-    searchBarPlaceholder: 'Search your library...',
+    searchBar: {
+      visible: true,
+      placeholder: 'Search your library...',
+    },
     title: {
       text: 'Booksy',
     },

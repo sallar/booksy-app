@@ -1,12 +1,13 @@
 import { observer } from 'mobx-react-lite';
 import React from 'react';
 import { ActivityIndicator, Button, Text, View } from 'react-native';
+import { NavigationFunctionComponent } from 'react-native-navigation';
 import { useQuery } from 'urql';
 import { clearSession } from '../api/auth';
-import { NavigationComponent, setAuthAsRoot } from '../navigation';
+import { setAuthAsRoot } from '../navigation/layouts';
 import { useAppState } from '../store/app.store';
 
-const SettingsScreen: NavigationComponent = observer(() => {
+const SettingsScreen: NavigationFunctionComponent = observer(() => {
   const [res, executeQuery] = useQuery({
     query: `
       query { me { email username } }
