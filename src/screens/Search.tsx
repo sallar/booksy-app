@@ -1,12 +1,12 @@
+import { GoogleBook, searchBooks } from '@api/books';
+import { Navigation } from '@navigation/utils';
 import { useDebounce } from '@react-hook/debounce';
 import React, { useEffect, useState } from 'react';
 import { Image, ScrollView, Text, TouchableOpacity, View } from 'react-native';
 import { NavigationFunctionComponent } from 'react-native-navigation';
 import { useNavigationSearchBarUpdate } from 'react-native-navigation-hooks';
 import { useTheme } from 'react-native-themed-styles';
-import { GoogleBook, searchBooks } from '../api/books';
 import Routes from '../navigation/routes';
-import { Navigation } from '../navigation/utils';
 import { styleSheetFactory } from '../themes';
 
 const themedStyles = styleSheetFactory((theme) => ({

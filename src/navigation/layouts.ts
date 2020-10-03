@@ -1,4 +1,11 @@
-import { LayoutRoot, Navigation } from 'react-native-navigation';
+import Colors from '@utils/colors';
+import { Platform } from 'react-native';
+import {
+  LayoutRoot,
+  Navigation,
+  OptionsBottomTabs,
+  OptionsTopBar,
+} from 'react-native-navigation';
 import Routes from './routes';
 import { setLayoutStackChildren } from './utils';
 
@@ -7,27 +14,48 @@ export const setDefaultOptions = () => {
     statusBar: {
       visible: true,
       drawBehind: true,
-    },
-    topBar: {
-      drawBehind: true,
-      background: {
-        translucent: true,
-      },
-      largeTitle: {
-        visible: true,
-      },
-    },
-    bottomTab: {
-      iconColor: 'white',
-      selectedIconColor: '#147EFB',
-      textColor: 'white',
-      selectedTextColor: '#147EFB',
-    },
-    bottomTabs: {
-      titleDisplayMode: 'alwaysHide',
-      drawBehind: true,
       translucent: true,
     },
+    topBar: Platform.select<OptionsTopBar>({
+      ios: {
+        drawBehind: true,
+        background: {
+          translucent: true,
+        },
+        largeTitle: {
+          visible: true,
+        },
+      },
+      android: {
+        background: {
+          color: Colors.card,
+        },
+        title: {
+          color: Colors.label,
+        },
+        backButton: {
+          color: Colors.label,
+        },
+      },
+    }),
+    bottomTab: {
+      iconColor: Colors.label,
+      selectedIconColor: Colors.accent,
+    },
+    navigationBar: {
+      backgroundColor: Colors.card,
+    },
+    bottomTabs: Platform.select<OptionsBottomTabs>({
+      ios: {
+        titleDisplayMode: 'alwaysHide',
+        drawBehind: true,
+        translucent: true,
+      },
+      android: {
+        titleDisplayMode: 'alwaysHide',
+        backgroundColor: Colors.card,
+      },
+    }),
   });
 };
 

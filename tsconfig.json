@@ -10,9 +10,17 @@
     "experimentalDecorators": true,
     "noEmit": true,
     "strict": true,
-    "target": "esnext"
+    "target": "esnext",
+    "baseUrl": "./src",
+    "paths": {
+      "@navigation/*": ["./navigation/*"],
+      "@api/*": ["./api/*"],
+      "@screens/*": ["./screens/*"],
+      "@utils/*": ["./utils/*"],
+      "@store/*": ["./store/*"]
+    }
   },
-  "include": ["src/"],
+  "include": ["./src/**/*"],
   "exclude": [
     "node_modules",
     "babel.config.js",

@@ -1,18 +1,18 @@
-import { observer } from 'mobx-react-lite';
-import React, { useCallback, useEffect, useState } from 'react';
-import { SafeAreaView, StyleSheet, Text, TouchableOpacity } from 'react-native';
-import { NavigationFunctionComponent } from 'react-native-navigation';
-import { useNavigationButtonPress } from 'react-native-navigation-hooks/dist';
-import { useTheme } from 'react-native-themed-styles';
-import { useMutation, useQuery } from 'urql';
 import {
   getInternalBookId,
   GoogleBook,
   googleBookToBookSource,
-} from '../api/books';
-import { AddBookToShelf } from '../api/mutations';
-import { Shelf } from '../api/types';
-import { Navigation } from '../navigation/utils';
+} from '@api/books';
+import { AddBookToShelf } from '@api/mutations';
+import { Shelf } from '@api/types';
+import { Navigation } from '@navigation/utils';
+import { observer } from 'mobx-react-lite';
+import React, { useCallback, useEffect, useState } from 'react';
+import { SafeAreaView, StyleSheet, Text, TouchableOpacity } from 'react-native';
+import { NavigationFunctionComponent } from 'react-native-navigation';
+import { useNavigationButtonPress } from 'react-native-navigation-hooks';
+import { useTheme } from 'react-native-themed-styles';
+import { useMutation, useQuery } from 'urql';
 import { styleSheetFactory } from '../themes';
 
 interface Props {
