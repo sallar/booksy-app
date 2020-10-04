@@ -6,14 +6,13 @@ import {
 import { AddBookToShelf } from '@api/mutations';
 import { Shelf } from '@api/types';
 import { Navigation } from '@navigation/utils';
+import Colors from '@utils/colors';
 import { observer } from 'mobx-react-lite';
 import React, { useCallback, useEffect, useState } from 'react';
 import { SafeAreaView, StyleSheet, Text, TouchableOpacity } from 'react-native';
 import { NavigationFunctionComponent } from 'react-native-navigation';
 import { useNavigationButtonPress } from 'react-native-navigation-hooks';
-import { useTheme } from 'react-native-themed-styles';
 import { useMutation, useQuery } from 'urql';
-import { styleSheetFactory } from '../themes';
 
 interface Props {
   book: GoogleBook;
@@ -21,7 +20,6 @@ interface Props {
 
 const ShelvesScreen: NavigationFunctionComponent<Props> = observer(
   ({ componentId, book }) => {
-    const [styles] = useTheme(themedStyles);
     const [internalBookId, setInternalBookId] = useState<string | null>(null);
     const [addResults, addBookToShelf] = useMutation(AddBookToShelf);
     const [res] = useQuery({
@@ -107,15 +105,15 @@ ShelvesScreen.options = () => ({
   },
 });
 
-const themedStyles = styleSheetFactory((theme) => ({
+const styles = StyleSheet.create({
   text: {
-    color: theme.textColor,
+    color: Colors.label,
   },
   shelf: {
     padding: 10,
-    borderBottomColor: theme.border,
+    borderBottomColor: Colors.separator,
     borderBottomWidth: StyleSheet.hairlineWidth,
   },
-}));
+});
 
 export default ShelvesScreen;

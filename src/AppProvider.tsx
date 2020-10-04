@@ -6,8 +6,7 @@ import { createClient, Provider } from 'urql';
 const client = createClient({
   url: 'https://graphql.fauna.com/graphql',
   fetchOptions: () => {
-    const token =
-      appStore.token ?? 'fnED3Pf_zgACDQOv3u4XcAILJZEbsflA9ThlEi4vpnbApTe5Nfg';
+    const token = appStore.token;
     if (!token) {
       return {};
     }

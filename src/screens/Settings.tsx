@@ -1,3 +1,4 @@
+import Colors from '@utils/colors';
 import { observer } from 'mobx-react-lite';
 import React from 'react';
 import { ActivityIndicator, Button, Text, View } from 'react-native';
@@ -26,8 +27,8 @@ const SettingsScreen: NavigationFunctionComponent = observer(() => {
       {res.fetching && <ActivityIndicator />}
       {res.data && res.data.me && (
         <>
-          <Text style={{ color: 'white' }}>{res.data.me.username}</Text>
-          <Text style={{ color: 'white' }}>{res.data.me.email}</Text>
+          <Text style={{ color: Colors.label }}>{res.data.me.username}</Text>
+          <Text style={{ color: Colors.label }}>{res.data.me.email}</Text>
         </>
       )}
       <Button title="Logout" onPress={onLogoutClicked} />

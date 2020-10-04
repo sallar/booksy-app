@@ -4,6 +4,7 @@ import {
   LayoutRoot,
   Navigation,
   OptionsBottomTabs,
+  OptionsLayout,
   OptionsTopBar,
 } from 'react-native-navigation';
 import Routes from './routes';
@@ -11,6 +12,14 @@ import { setLayoutStackChildren } from './utils';
 
 export const setDefaultOptions = () => {
   Navigation.setDefaultOptions({
+    layout: Platform.select<OptionsLayout>({
+      ios: {
+        componentBackgroundColor: Colors.background,
+      },
+      android: {
+        backgroundColor: Colors.background,
+      },
+    }),
     statusBar: {
       visible: true,
       drawBehind: true,
