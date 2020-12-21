@@ -1,33 +1,21 @@
+import { GoogleBook, searchBooks } from '@api/books';
+import { Navigation } from '@navigation/utils';
 import { useDebounce } from '@react-hook/debounce';
+import Colors from '@utils/colors';
 import React, { useEffect, useState } from 'react';
-import { Image, ScrollView, Text, TouchableOpacity, View } from 'react-native';
+import {
+  Image,
+  ScrollView,
+  StyleSheet,
+  Text,
+  TouchableOpacity,
+  View,
+} from 'react-native';
+import { NavigationFunctionComponent } from 'react-native-navigation';
 import { useNavigationSearchBarUpdate } from 'react-native-navigation-hooks';
-import { useTheme } from 'react-native-themed-styles';
-import { GoogleBook, searchBooks } from '../api/books';
-import { navigateTo, NavigationComponent } from '../navigation';
-import { styleSheetFactory } from '../themes';
-import Routes from './routes';
+import Routes from '../navigation/routes';
 
-const themedStyles = styleSheetFactory((theme) => ({
-  listContainer: {
-    paddingVertical: 16,
-    flex: 1,
-    flexDirection: 'row',
-    flexWrap: 'wrap',
-  },
-  listItem: {
-    width: '50%',
-    alignItems: 'center',
-    marginBottom: 16,
-  },
-  listTitle: {
-    marginTop: 8,
-    color: theme.textColor,
-  },
-}));
-
-const SearchScreen: NavigationComponent = ({ componentId }) => {
-  const [styles] = useTheme(themedStyles);
+const SearchScreen: NavigationFunctionComponent = ({ componentId }) => {
   const [query, setQuery] = useDebounce('skyward', 500);
   const [results, setResults] = useState<GoogleBook[]>([]);
 
@@ -49,8 +37,9 @@ const SearchScreen: NavigationComponent = ({ componentId }) => {
   }, [query]);
 
   const navigateToBookDetails = (book: GoogleBook) =>
-    navigateTo(componentId, Routes.BookDetails, {
-      book,
+    Navigation.push(componentId, {
+      name: Routes.BookDetails,
+      passProps: { book },
     });
 
   return (
@@ -83,10 +72,31 @@ const SearchScreen: NavigationComponent = ({ componentId }) => {
   );
 };
 
+const styles = StyleSheet.create({
+  listContainer: {
+    paddingVertical: 16,
+    flex: 1,
+    flexDirection: 'row',
+    flexWrap: 'wrap',
+  },
+  listItem: {
+    width: '50%',
+    alignItems: 'center',
+    marginBottom: 16,
+  },
+  listTitle: {
+    marginTop: 8,
+    color: Colors.label,
+  },
+});
+
 SearchScreen.options = () => ({
   topBar: {
-    searchBar: true,
-    searchBarPlaceholder: 'Search by Title, Author or ISBN...',
+    searchBar: {
+      visible: true,
+      hideTopBarOnFocus: true,
+      placeholder: 'Search by Title, Author or ISBN...',
+    },
     title: {
       text: 'Search',
     },

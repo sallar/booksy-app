@@ -1,16 +1,9 @@
-export const AddBookToShelf = `
-  mutation ($shelfId: ID!, $internalBookId: ID!) {
-    createUserBook(data: {
-      shelves:{
-        connect: [$shelfId]
-      },
-      source: {
-        connect: $internalBookId
-      }
-    }) {
-      source {
-        googleBookId
-      }
+import gql from 'graphql-tag';
+
+export const AddBookToShelf = gql`
+  mutation($shelfId: ID!, $internalBookId: ID!) {
+    addBookToShelf(shelfID: $shelfId, bookID: $internalBookId) {
+      ts
     }
   }
 `;

@@ -1,7 +1,7 @@
+import { appStore } from '@store/app.store';
 import React from 'react';
 import { AppearanceProvider } from 'react-native-appearance';
 import { createClient, Provider } from 'urql';
-import { appStore } from './store/app.store';
 
 const client = createClient({
   url: 'https://graphql.fauna.com/graphql',

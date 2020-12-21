@@ -1,65 +1,30 @@
+import Colors from '@utils/colors';
 import React from 'react';
-import { Image, ImageStyle, ScrollView, Text, View } from 'react-native';
-import { useTheme } from 'react-native-themed-styles';
-import { GoogleBook } from '../api/books';
-import { NavigationComponent, showModal } from '../navigation';
-import { styleSheetFactory } from '../themes';
+import {
+  Image,
+  ImageStyle,
+  ScrollView,
+  StyleSheet,
+  Text,
+  View,
+} from 'react-native';
+import { NavigationFunctionComponent } from 'react-native-navigation';
 import { useNavigationButtonPress } from 'react-native-navigation-hooks/dist';
-import Routes from './routes';
+import { GoogleBook } from '../api/books';
+import Routes from '../navigation/routes';
+import { Navigation } from '../navigation/utils';
 
 interface BookDetailsProps {
   book: GoogleBook;
 }
 
-const themedStyles = styleSheetFactory((theme) => ({
-  cover: {
-    flex: 1,
-    flexDirection: 'row',
-    paddingVertical: 16,
-    height: 250,
-  },
-  coverTitles: {
-    paddingLeft: 8,
-    paddingRight: 16,
-    flex: 1,
-  },
-  coverBackground: {
-    width: '100%',
-    height: 250,
-    position: 'absolute',
-  },
-  coverImage: {
-    width: 150,
-    height: 200,
-    marginLeft: 8,
-  },
-  coverTitle: {
-    fontSize: 22,
-    fontWeight: '600',
-    color: theme.textColor,
-  },
-  coverSubtitle: {
-    color: theme.textColor,
-  },
-  coverDescription: {
-    marginTop: 8,
-    fontSize: 12,
-    color: theme.textColor,
-    overflow: 'hidden',
-  },
-}));
-
-const BookDetails: NavigationComponent<BookDetailsProps> = ({
+const BookDetails: NavigationFunctionComponent<BookDetailsProps> = ({
   book,
   componentId,
 }) => {
-  const [styles] = useTheme(themedStyles);
-
   useNavigationButtonPress(
     (e) => {
-      showModal(componentId, Routes.ShelvesScreen, {
-        book,
-      });
+      Navigation.showModal({ name: Routes.ShelvesScreen, passProps: { book } });
     },
     componentId,
     'add-book-button',
@@ -96,6 +61,44 @@ const BookDetails: NavigationComponent<BookDetailsProps> = ({
     </ScrollView>
   );
 };
+
+const styles = StyleSheet.create({
+  cover: {
+    flex: 1,
+    flexDirection: 'row',
+    paddingVertical: 16,
+    height: 250,
+  },
+  coverTitles: {
+    paddingLeft: 8,
+    paddingRight: 16,
+    flex: 1,
+  },
+  coverBackground: {
+    width: '100%',
+    height: 250,
+    position: 'absolute',
+  },
+  coverImage: {
+    width: 150,
+    height: 200,
+    marginLeft: 8,
+  },
+  coverTitle: {
+    fontSize: 22,
+    fontWeight: '600',
+    color: Colors.label,
+  },
+  coverSubtitle: {
+    color: Colors.label,
+  },
+  coverDescription: {
+    marginTop: 8,
+    fontSize: 12,
+    color: Colors.label,
+    overflow: 'hidden',
+  },
+});
 
 BookDetails.options = (props) => ({
   topBar: {

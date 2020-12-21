@@ -1,5 +1,5 @@
 PODS:
-  - A0Auth0 (2.3.1):
+  - A0Auth0 (2.6.0):
     - React
   - boost-for-react-native (1.63.0)
   - CocoaAsyncSocket (7.6.4)
@@ -300,15 +300,11 @@ PODS:
     - React-Core (= 0.63.2)
     - React-cxxreact (= 0.63.2)
     - React-jsi (= 0.63.2)
-  - ReactNativeNavigation (6.10.1):
-    - React
+  - ReactNativeNavigation (7.3.0):
+    - React-Core
     - React-RCTImage
     - React-RCTText
-    - ReactNativeNavigation/Core (= 6.10.1)
-  - ReactNativeNavigation/Core (6.10.1):
-    - React
-    - React-RCTImage
-    - React-RCTText
+    - ReactNativeNavigation/Core (= 7.3.0)
   - RNCAsyncStorage (1.10.0):
     - React
   - Yoga (1.14.0)
@@ -446,7 +442,7 @@ EXTERNAL SOURCES:
     :path: "../node_modules/react-native/ReactCommon/yoga"
 
 SPEC CHECKSUMS:
-  A0Auth0: 672afa3f770b06befa3a6d57c8fd26730344b6db
+  A0Auth0: 2919855112dbfadfea2c55418fa6114f274ee6de
   boost-for-react-native: 39c7adb57c4e60d6c5479dd8623128eb5b3f0f2c
   CocoaAsyncSocket: 694058e7c0ed05a9e217d1b3c7ded962f4180845
   CocoaLibEvent: 2fab71b8bd46dd33ddb959f7928ec5909f838e3f
@@ -484,11 +480,11 @@ SPEC CHECKSUMS:
   React-RCTText: 1b6773e776e4b33f90468c20fe3b16ca3e224bb8
   React-RCTVibration: 4d2e726957f4087449739b595f107c0d4b6c2d2d
   ReactCommon: a0a1edbebcac5e91338371b72ffc66aa822792ce
-  ReactNativeNavigation: 93712ba3b8d066da5db972bf4fda8ba11811d4da
+  ReactNativeNavigation: c2dcda2b86e32090c443182206c915107d03106f
   RNCAsyncStorage: 6d99641f8e6f15d169d695d8ef184bf187903f11
   Yoga: 7740b94929bbacbddda59bf115b5317e9a161598
   YogaKit: f782866e155069a2cca2517aafea43200b01fd5a
 
 PODFILE CHECKSUM: ff2fa9301141bcbfb1b058e675c498d6ecba67c9
 
-COCOAPODS: 1.8.4
+COCOAPODS: 1.9.3

@@ -1,26 +1,25 @@
-import { observer } from 'mobx-react-lite';
-import React, { useEffect, useState, useCallback } from 'react';
-import { SafeAreaView, StyleSheet, Text, TouchableOpacity } from 'react-native';
-import { useNavigationButtonPress } from 'react-native-navigation-hooks/dist';
-import { useTheme } from 'react-native-themed-styles';
-import { useQuery, useMutation } from 'urql';
 import {
-  GoogleBook,
   getInternalBookId,
+  GoogleBook,
   googleBookToBookSource,
-} from '../api/books';
-import { Shelf } from '../api/types';
-import { dismissModal, NavigationComponent } from '../navigation';
-import { styleSheetFactory } from '../themes';
-import { AddBookToShelf } from '../api/mutations';
+} from '@api/books';
+import { AddBookToShelf } from '@api/mutations';
+import { Shelf } from '@api/types';
+import { Navigation } from '@navigation/utils';
+import Colors from '@utils/colors';
+import { observer } from 'mobx-react-lite';
+import React, { useCallback, useEffect, useState } from 'react';
+import { SafeAreaView, StyleSheet, Text, TouchableOpacity } from 'react-native';
+import { NavigationFunctionComponent } from 'react-native-navigation';
+import { useNavigationButtonPress } from 'react-native-navigation-hooks';
+import { useMutation, useQuery } from 'urql';
 
 interface Props {
   book: GoogleBook;
 }
 
-const ShelvesScreen: NavigationComponent<Props> = observer(
+const ShelvesScreen: NavigationFunctionComponent<Props> = observer(
   ({ componentId, book }) => {
-    const [styles] = useTheme(themedStyles);
     const [internalBookId, setInternalBookId] = useState<string | null>(null);
     const [addResults, addBookToShelf] = useMutation(AddBookToShelf);
     const [res] = useQuery({
@@ -48,7 +47,7 @@ const ShelvesScreen: NavigationComponent<Props> = observer(
     useNavigationButtonPress((e) => {
       switch (e.buttonId) {
         case 'cancel':
-          dismissModal(componentId);
+          Navigation.dismissModal(componentId);
           break;
         default:
           break;
@@ -61,7 +60,7 @@ const ShelvesScreen: NavigationComponent<Props> = observer(
           return;
         }
         addBookToShelf({ shelfId: shelf._id, internalBookId }).then(() => {
-          dismissModal(componentId);
+          Navigation.dismissModal(componentId);
         });
       },
       [internalBookId, componentId],
@@ -106,15 +105,15 @@ ShelvesScreen.options = () => ({
   },
 });
 
-const themedStyles = styleSheetFactory((theme) => ({
+const styles = StyleSheet.create({
   text: {
-    color: theme.textColor,
+    color: Colors.label,
   },
   shelf: {
     padding: 10,
-    borderBottomColor: theme.border,
+    borderBottomColor: Colors.separator,
     borderBottomWidth: StyleSheet.hairlineWidth,
   },
-}));
+});
 
 export default ShelvesScreen;
