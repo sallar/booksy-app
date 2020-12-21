@@ -34,6 +34,14 @@ export const setDefaultOptions = () => {
         largeTitle: {
           visible: true,
         },
+        borderHeight: 0,
+        noBorder: true,
+        scrollEdgeAppearance: {
+          active: true,
+          background: {
+            translucent: false,
+          },
+        },
       },
       android: {
         background: {

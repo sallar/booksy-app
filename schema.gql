@@ -15,6 +15,21 @@ type Book @collection(name: "books") {
   googleBookId: ID!
   volumeInfo: BookSourceVolumeInfo!
   shelves: [Shelf] @relation
+  reviews: [Review] @relation
+  ratingAverage: Float
+  ratingTotal: Int
+}
+
+type Review @collection(name: "reviews") {
+  book: Book! @relation
+  stars: Int!
+  commentary: String
+  author: User! @relation
+}
+
+input ReviewInput {
+  stars: Int!
+  commentary: String
 }
 
 type BookSourceVolumeInfo @embedded {
@@ -30,8 +45,19 @@ type BookSourceImageLinks @embedded {
   thumbnail: String
 }
 
+type AddBookToShelfResponse @embedded {
+  ts: Long!
+}
+
 type Query {
   me: User! @resolver(name: "fetch_me")
   findShelvesByBookAndUser(bookID: ID!, userID: ID!): [Shelf]!
     @resolver(name: "find_shelves_by_book_and_user", paginated: true)
+}
+
+type Mutation {
+  createReview(bookID: ID!, review: ReviewInput!): Review!
+    @resolver(name: "submit_review")
+  addBookToShelf(bookID: ID!, shelfID: ID!): AddBookToShelfResponse!
+    @resolver(name: "add_book_to_shelf")
 }
